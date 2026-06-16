@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda Psicopedagogía</title>
+<a href="/recordatorios">
+    <button style="
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 15px;
+    ">
+        📲 Ver recordatorios
+    </button>
+</a>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color:#f4f6f9;
+            margin:40px;
+        }
+
+        .contenedor{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:5px;
+            color:#2c3e50;
+        }
+
+        h2{
+            text-align:center;
+            margin-top:0;
+            font-weight:normal;
+            color:#666;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:8px;
+        }
+
+        button{
+            background:#4CAF50;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            opacity:0.9;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        th{
+            background:#4CAF50;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:10px;
+            border-bottom:1px solid #ddd;
+        }
+
+        a{
+            text-decoration:none;
+        }
+        .estadisticas{
+    display:flex;
+    gap:20px;
+    margin:25px 0;
+}
+
+.card{
+    flex:1;
+    background:#f8f9fa;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+.card h3{
+    margin:0;
+    color:#666;
+    font-size:14px;
+}
+
+.card p{
+    font-size:32px;
+    font-weight:bold;
+    margin:10px 0 0 0;
+    color:#2c3e50;
+}        
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>🧠 Lic. Milagros Gab</h1>
+<h2>Psicopedagogía</h2>
+<div class="estadisticas">
+
+    <div class="card">
+        <h3>Total de turnos</h3>
+        <p>{{ total_turnos }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Turnos de hoy</h3>
+        <p>{{ turnos_hoy }}</p>
+    </div>
+
+</div>
+
+<form method="POST">
+
+<label>Nombre</label>
+<input type="text" name="nombre" required>
+
+<label>Teléfono</label>
+<input type="text" name="telefono" required>
+
+<label>Fecha</label>
+<input type="date" name="fecha" required>
+
+<label>Hora</label>
+<input type="time" name="hora" required>
+
+<button type="submit">
+Guardar Turno
+</button>
+
+</form>
+
+<hr>
+
+<h2>Turnos cargados</h2>
+
+<table>
+
+<tr>
+    <th>Paciente</th>
+    <th>Teléfono</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Acción</th>
+</tr>
+
+{% for turno in turnos %}
+
+<tr>
+    <td>{{ turno[1] }}</td>
+    <td>{{ turno[2] }}</td>
+    <td>{{ turno[3] }}</td>
+    <td>{{ turno[4] }}</td>
+    <td>
+        <a href="/eliminar/{{ turno[0] }}">
+            🗑️
+        </a>
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
